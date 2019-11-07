@@ -1,0 +1,119 @@
+body {
+    background-color: #dadadada;
+    font-size: 20px;
+}
+
+h1, 
+h2 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+h2 {
+    padding: 0 10px 5px 10px;
+
+}
+
+hr {
+    background: #dadada;
+    border: none;
+    height: 2px;
+}
+
+.wrapper {
+    margin: 0 auto;
+    background: #fff;
+    width: 700px;
+    border-radius: 5px;
+    padding: 40px;
+    box-shadow: 0 0 4px #5d5d5d;
+}
+
+.row {
+    width: 100%;
+    text-align: left;
+}
+
+#pass {
+    width: 100%;
+}
+
+#textarea {
+    width: 94%;
+    border: 2px dashed #c0c7cf;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px 20px 50px 20px;
+    color: #808080;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16pt;
+}
+
+.btns {
+   text-align: center;
+   color: #eee;
+   padding: 10px 10px 60px 10px;
+
+}
+
+#copy, 
+#gen {
+    border-radius: 30px;
+    padding: 10px 20px 10px 20px;
+    border: none;
+    font-size: 16pt;
+    color: #fff;
+}
+
+#gen:active {
+    background: darkred;
+}
+
+#gen {
+    background: #af0808; 
+    float: left;
+}
+
+#copy{
+    background: #c0c7cf;
+    float: right;
+}
+
+@media screen and (min-width: 1024px) {
+    .wrapper {
+        max-width: 65%;
+    }
+}
+@media screen and (max-width: 768px) {
+    
+    .wrapper {
+        width: 83%;
+        margin: 0px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    
+    .wrapper {
+        width: 90%;
+        margin: 0px;
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 18pt;
+    }
+
+    #textarea {
+        width: 88%;
+    }
+
+    #gen,
+    #copy {
+        float: unset;
+        margin: 5px;
+    }
+
+}
