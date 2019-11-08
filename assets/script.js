@@ -1,100 +1,148 @@
 
 // variables
-var characters = "ABDCEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+var uppercase = "ABDCEFGHIJKLMNOPQRSTUVWXYZ";
+var lowercase = uppercase.toLowerCase();
 var special = "!@#$%^&*?-";
 var numbers = "1234567890";
 var password = '';
 
-var genBtn = document.getElementById("gen");
-var textarea = document.querySelector("input");
+var genBtn = document.querySelector("#gen");
+var textarea = document.querySelector("#textarea");
 
 //copy function called bellow by "click" listener
-
+console.log("this is in lowercase: ", lowercase)
 function copy() {
     var copyText = document.querySelector("#textarea");
     copyText.select();
     document.execCommand("copy");
   }
   
-// MAIN FUNCTION YO!!! This makes the car go when the "Generate Password" button is clicked
-
+ // MAIN FUNCTION YO!!! This makes the car go when the "Generate Password" button is clicked
 function generatePassword() {
 
-// ask user if they want to include special characters
+ // ask user if they want to include special characters
+ var userSpecial = confirm("Would you like your password to create special characters?");
 
-var userSpecial = confirm("Would you like your password to create special characters?");
+ // ask the user if they want to include numbers
+ var userNumber = confirm("Would you like your password to include numbers?");
 
-// ask the user if they want to include numbers
+ // ask the user if they want to include both upper and lowercase letters
+ var userCase = confirm("Would you like to include upper and lowercase letters?");
 
-var userNumber = confirm("Would you like your password to include numbers?");
+ // variables for all the true/false options bc I didn't want to write out the whole thing every time
+ var userCaseTrue = userCase === true;
+ var userCaseFalse = userCase === false;
+ var userSpecialTrue = userSpecial === true;
+ var userSpecialFalse = userSpecial === false;
+ var userNumberTrue = userNumber === true;
+ var userNumberFalse = userNumber === false;
 
     // validate that the user has chosen at least one
- if (userSpecial === false && userNumber === false) {
+    // if no valid selection alert the user to choose at least one and refresh and no further prompts
+ if (userSpecialFalse && userNumberFalse && userCaseFalse) {
             alert("You must include at least one option \nPlease refresh your browser");
-        }
-// if no valid selection alert the user to choose at least one and refresh and no further prompts
+ }
 
-// if at least one valid input has been made continue here:
-
-else {
+ // if at least one valid input has been made continue here:
+ else {
     var userLength = prompt("Choose a password length between 8 - 128");
-}
-   
+ }
 
-// if the user wants both special characters and numbers
+ // verify the user has chosen a number between 8 - 128
+ // alert if they have not
+ if (userLength < 8 || userLength > 128) {
+    alert("Please refresh the page and choose a number between 8 - 128")
+ }
 
-    if (userSpecial === true && userNumber === true) {
-        function specialNumAlpha() {
-            var charSet = characters + numbers + special;
+ // if they've chosen an appropriate number then continue with the function
+ else {
 
-            for ( var i = 0; i < userLength; i++) {
-            password += charSet.charAt(Math.floor(Math.random() * charSet.length));
-            }
-
-            textarea.setAttribute("value", password);
-            return password;
-        }
-        specialNumAlpha();
-
-        console.log("Here's your password: " + specialNumAlpha());
-    }
-// if the user wants only numbers and letters
-
-    else if (userSpecial === false && userNumber === true) {
-        function alphaNum() {
-            var charSet = characters + numbers;
+ // if the user wants special characters, numbers, and uppercase letters
+    if (userSpecialTrue && userNumberTrue && userCaseTrue) {
+        function alphaSpecNumCase() {
+            var charSet = uppercase + lowercase + numbers + special;
 
             for ( var i = 0; i < userLength; i++) {
-            password += charSet.charAt(Math.floor(Math.random() * charSet.length));
+            password += charSet[Math.floor(Math.random() * charSet.length)];
             }
 
-            textarea.setAttribute("value", password);
+            textarea.textContent = password;
             return password;
         }
-        alphaNum();
+        alphaSpecNumCase();
 
-        console.log("Here's your password: " + alphaNum());
+        console.log("Here's your password: " + alphaSpecNumCase());
     }
 
-// and the only other option is letters and special characters so that's an else
+ // if the user wants only numbers and letters
+    else if (userSpecialFalse && userNumberTrue && userCaseTrue) {
+        function alphaNumCase() {
+            var charSet = uppercase + lowercase + numbers;
 
+            for ( var i = 0; i < userLength; i++) {
+            password += charSet[Math.floor(Math.random() * charSet.length)];
+            }
+
+            textarea.textContent = password;
+            return password;
+        }
+        alphaNumCase();
+
+        console.log("Here's your password: ", alphaNumCase());
+    }
+
+ // if the user selects only upper and lowercase letters
+    else if (userSpecialFalse && userNumberFalse && userCaseTrue) {
+        function alphaCase() {
+            var charSet = uppercase + lowercase;
+
+            for ( var i = 0; i < userLength; i++) {
+            password += charSet[Math.floor(Math.random() * charSet.length)];
+            }
+
+            textarea.textContent = password;
+            return password;
+        }
+        alphaCase();
+
+        console.log("Here's your password: ", alphaCase());
+    }
+    
+ // if the user selects lowercase, special characters, and numbers
+    else if (userSpecialTrue && userNumberFalse && userCaseTrue) {
+        function alphaSpecCase() {
+            var charSet = lowercase + uppercase + special;
+
+            for ( var i = 0; i < userLength; i++) {
+            password += charSet[Math.floor(Math.random() * charSet.length)];
+            }
+
+            textarea.textContent = password;
+            return password;
+        }
+        alphaSpecCase();
+
+        console.log("Here's your password: ", alphaSpecCase());
+    }
+
+ // if the user selects only lowercase letters and special characters
     else {
         function alphaSpec() {
-            var charSet = characters + special;
+            var charSet = lowercase + special;
 
             for ( var i = 0; i < userLength; i++) {
-            password += charSet.charAt(Math.floor(Math.random() * charSet.length));
+            password += charSet[Math.floor(Math.random() * charSet.length)];
             }
 
-            textarea.setAttribute("value", password);
+            textarea.textContent = password;
             return password;
         }
         alphaSpec();
 
-        console.log("Here's your password: " + alphaSpec());
+        console.log("Here's your password: ", alphaSpec());
     }
+ }
+
 }
-
-
 genBtn.addEventListener("click", generatePassword);
 document.querySelector("#copy").addEventListener("click", copy);
