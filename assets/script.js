@@ -27,7 +27,7 @@ function generatePassword() {
  var userNumber = confirm("Would you like your password to include numbers?");
 
  // ask the user if they want to include both upper and lowercase letters
- var userCase = confirm("Would you like to include upper and lowercase letters?");
+ var userCase = confirm("Would you like to include uppercase letters?");
 
  // variables for all the true/false options bc I didn't want to write out the whole thing every time
  var userCaseTrue = userCase === true;
@@ -45,7 +45,7 @@ function generatePassword() {
 
  // if at least one valid input has been made continue here:
  else {
-    var userLength = prompt("Choose a password length between 8 - 128");
+    var userLength = prompt("Enter a number between 8 - 128 to set the length of your password");
  }
 
  // verify the user has chosen a number between 8 - 128
