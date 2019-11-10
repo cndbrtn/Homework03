@@ -1,15 +1,13 @@
 
-// variables
+// variables for charsets
 var uppercase = "ABDCEFGHIJKLMNOPQRSTUVWXYZ";
 var lowercase = uppercase.toLowerCase();
 var special = "!@#$%^&*?-";
 var numbers = "1234567890";
 var password = '';
+// variables for grabbers
 var genBtn = document.querySelector("#gen");
 var textarea = document.querySelector("#textarea");
-
-//copy function called bellow by "click" listener
-console.log("this is in lowercase: ", lowercase)
   
  // MAIN FUNCTION YO!!! This makes the car go when the "Generate Password" button is clicked
 function generatePassword() {
@@ -272,7 +270,7 @@ function generatePassword() {
     }
 }
 
-// our even listeners for button clicks
+// our event listeners for button clicks
 genBtn.addEventListener("click", generatePassword);
 document.querySelector("#copy").addEventListener("click", copy);
 
