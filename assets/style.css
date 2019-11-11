@@ -50,6 +50,7 @@ hr {
     font-family: 'Times New Roman', Times, serif;
     font-size: 16pt;
     height: auto;
+    resize: none;
 }
 
 .btns {
